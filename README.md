@@ -1,4 +1,8 @@
 # Warung Makan Wong Solo - Aplikasi Manajemen UMKM
+Anggota Kelompok:
+Faril Akmal Aufa - 25082010039
+Moch. Ryan Saputra - 25082010028
+Dhiaurrahman Rabbani Harianto - 25082010042
 
 ## Deskripsi
 Aplikasi ini digunakan untuk membantu pihak pemilik UMKM Warung Makan Wong Solo dalam mencatat transaksi penjualan sehari-hari. Aplikasi mendukung transaksi dengan satu jenis barang atau banyak jenis barang sekaligus, dengan fitur pelanggan tetap dan diskon.
