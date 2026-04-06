@@ -2,7 +2,7 @@ package warungmakan;
 
 import java.util.Scanner;
 
-public class Login {
+public class cLogin {
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "wongsolo123";
     

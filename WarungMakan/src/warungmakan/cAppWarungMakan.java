@@ -2,24 +2,24 @@ package warungmakan;
 
 import java.util.Scanner;
 
-public class AppWarungMakan {
-    private MenuManager menuManager;
-    private PelangganManager pelangganManager;
-    private TransaksiManager transaksiManager;
-    private LaporanManager laporanManager;
+public class cAppWarungMakan {
+    private cMenuManager menuManager;
+    private cPelangganManager pelangganManager;
+    private cTransaksiManager transaksiManager;
+    private cLaporanManager laporanManager;
     private Scanner scanner;
     
-    public AppWarungMakan() {
-        this.menuManager = new MenuManager();
-        this.pelangganManager = new PelangganManager();
-        this.transaksiManager = new TransaksiManager(menuManager);
+    public cAppWarungMakan() {
+        this.menuManager = new cMenuManager();
+        this.pelangganManager = new cPelangganManager();
+        this.transaksiManager = new cTransaksiManager(menuManager);
         this.transaksiManager.setPelangganManager(pelangganManager);
-        this.laporanManager = new LaporanManager();
+        this.laporanManager = new cLaporanManager();
         this.scanner = new Scanner(System.in);
     }
     
     public void run() {
-        if (!Login.authenticate()) {
+        if (!cLogin.authenticate()) {
             return;
         }
         
@@ -49,7 +49,7 @@ public class AppWarungMakan {
                     
                     // Create backup before closing
                     System.out.println("\nMembuat backup data...");
-                    FileManager.backupData();
+                    cFileManager.backupData();
                     
                     System.out.println("\nTerima kasih telah menggunakan Aplikasi Warung Makan Wong Solo!");
                     System.out.println("Matur thank you brokk!");
@@ -87,15 +87,15 @@ public class AppWarungMakan {
             switch (pilihan) {
                 case 1:
                     menuManager.tambahBarang();
-                    FileManager.saveMenu(menuManager.getDaftarBarang());
+                    cFileManager.saveMenu(menuManager.getDaftarBarang());
                     break;
                 case 2:
                     menuManager.ubahBarang();
-                    FileManager.saveMenu(menuManager.getDaftarBarang());
+                    cFileManager.saveMenu(menuManager.getDaftarBarang());
                     break;
                 case 3:
                     menuManager.hapusBarang();
-                    FileManager.saveMenu(menuManager.getDaftarBarang());
+                    cFileManager.saveMenu(menuManager.getDaftarBarang());
                     break;
                 case 4:
                     menuManager.tampilkanDaftarBarang();
@@ -111,18 +111,18 @@ public class AppWarungMakan {
     private void menuTransaksiPenjualan() {
         transaksiManager.mulaiTransaksiBaru();
         
-        Pesanan pesananSelesai = transaksiManager.getPesananAktif();
+        cPesanan pesananSelesai = transaksiManager.getPesananAktif();
         if (pesananSelesai != null && pesananSelesai.isSelesai()) {
             laporanManager.tambahTransaksi(pesananSelesai);
             
             // Save transaction to file
-            FileManager.saveTransaction(pesananSelesai);
+            cFileManager.saveTransaction(pesananSelesai);
             
             // Update total belanja pelanggan jika ada
-            Pelanggan pelanggan = pelangganManager.cariPelanggan(pesananSelesai.getNamaPembeli());
+            cPelanggan pelanggan = pelangganManager.cariPelanggan(pesananSelesai.getNamaPembeli());
             if (pelanggan != null) {
                 pelanggan.tambahBelanja(pesananSelesai.getTotalBiaya());
-                FileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
+                cFileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
             }
         }
     }
@@ -144,15 +144,15 @@ public class AppWarungMakan {
             switch (pilihan) {
                 case 1:
                     pelangganManager.tambahPelanggan();
-                    FileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
+                    cFileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
                     break;
                 case 2:
                     pelangganManager.ubahPelanggan();
-                    FileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
+                    cFileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
                     break;
                 case 3:
                     pelangganManager.hapusPelanggan();
-                    FileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
+                    cFileManager.savePelanggan(pelangganManager.getDaftarPelanggan());
                     break;
                 case 4:
                     pelangganManager.tampilkanDaftarPelanggan();
@@ -199,7 +199,7 @@ public class AppWarungMakan {
     }
     
     public static void main(String[] args) {
-        AppWarungMakan app = new AppWarungMakan();
+        cAppWarungMakan app = new cAppWarungMakan();
         app.run();
     }
 }

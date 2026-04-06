@@ -1,12 +1,21 @@
 package warungmakan;
 
-public class cMakanan extends cMenu {
-    private String kategori;
-    public cMakanan(String n, double h, String k) {
-        super(n, h); // Memanggil constructor parent
-        this.kategori = k;
+public class cMakanan extends cBarang {
+    private String jenis;
+    
+    public cMakanan(String kode, String nama, double harga, String jenis) {
+        super(kode, nama, harga);
+        this.jenis = jenis;
     }
+    
+    public String getJenis() { return jenis; }
+    public void setJenis(String jenis) { this.jenis = jenis; }
+    
+    @Override
+    public String getKategori() { return "Makanan"; }
+    
+    @Override
     public String toString() {
-        return "[" + kategori + "] " + nama + " - Rp" + harga;
+        return "[" + kode + "] " + nama + " (" + jenis + ") - Rp" + harga;
     }
 }

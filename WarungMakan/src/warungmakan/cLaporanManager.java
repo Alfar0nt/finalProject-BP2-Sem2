@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LaporanManager {
-    private ArrayList<Pesanan> daftarTransaksiHarian;
+public class cLaporanManager {
+    private ArrayList<cPesanan> daftarTransaksiHarian;
     private HashMap<String, Double> totalPemasukanPerBarang;
     private double totalPemasukanHarian;
     
-    public LaporanManager() {
+    public cLaporanManager() {
         this.daftarTransaksiHarian = new ArrayList<>();
         this.totalPemasukanPerBarang = new HashMap<>();
         this.totalPemasukanHarian = 0;
     }
     
-    public void tambahTransaksi(Pesanan pesanan) {
+    public void tambahTransaksi(cPesanan pesanan) {
         if (pesanan != null && pesanan.isSelesai()) {
             daftarTransaksiHarian.add(pesanan);
             totalPemasukanHarian += pesanan.getTotalBiaya();
@@ -80,7 +80,7 @@ public class LaporanManager {
             "NO. TRX", "PEMBELI", "JUMLAH ITEM", "TOTAL");
         System.out.println("--------------------------------------------------");
         
-        for (Pesanan pesanan : daftarTransaksiHarian) {
+        for (cPesanan pesanan : daftarTransaksiHarian) {
             System.out.printf("%-12s %-20s %-15d Rp%,-10.0f%n", 
                 pesanan.getNomorTransaksi(),
                 pesanan.getNamaPembeli(),

@@ -3,24 +3,24 @@ package warungmakan;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MenuManager {
-    private ArrayList<Barang> daftarBarang;
+public class cMenuManager {
+    private ArrayList<cBarang> daftarBarang;
     private Scanner scanner;
     
-    public MenuManager() {
+    public cMenuManager() {
         this.daftarBarang = new ArrayList<>();
         this.scanner = new Scanner(System.in);
         initializeDefaultMenu();
     }
     
     private void initializeDefaultMenu() {
-        daftarBarang.add(new Makanan("M001", "Ayam Bakar Solo", 25000, "Paket"));
-        daftarBarang.add(new Makanan("M002", "Ayam Penyet", 23000, "Paket"));
-        daftarBarang.add(new Makanan("M003", "Gurami Bakar", 45000, "Ala Carte"));
-        daftarBarang.add(new Makanan("M004", "Kangkung", 12000, "Sayur"));
-        daftarBarang.add(new Minuman("D001", "Es Teh Manis", 5000, "Medium"));
-        daftarBarang.add(new Minuman("D002", "Jus Jeruk", 12000, "Large"));
-        daftarBarang.add(new Minuman("D003", "Air Mineral", 3000, "Small"));
+        daftarBarang.add(new cMakanan("M001", "Ayam Bakar Solo", 25000, "Paket"));
+        daftarBarang.add(new cMakanan("M002", "Ayam Penyet", 23000, "Paket"));
+        daftarBarang.add(new cMakanan("M003", "Gurami Bakar", 45000, "Ala Carte"));
+        daftarBarang.add(new cMakanan("M004", "Kangkung", 12000, "Sayur"));
+        daftarBarang.add(new cMinuman("D001", "Es Teh Manis", 5000, "Medium"));
+        daftarBarang.add(new cMinuman("D002", "Jus Jeruk", 12000, "Large"));
+        daftarBarang.add(new cMinuman("D003", "Air Mineral", 3000, "Small"));
     }
     
     public void tambahBarang() {
@@ -49,11 +49,11 @@ public class MenuManager {
         if (jenis == 1) {
             System.out.print("Jenis Makanan: ");
             String jenisMakanan = scanner.nextLine();
-            daftarBarang.add(new Makanan(kode, nama, harga, jenisMakanan));
+            daftarBarang.add(new cMakanan(kode, nama, harga, jenisMakanan));
         } else if (jenis == 2) {
             System.out.print("Ukuran Minuman: ");
             String ukuran = scanner.nextLine();
-            daftarBarang.add(new Minuman(kode, nama, harga, ukuran));
+            daftarBarang.add(new cMinuman(kode, nama, harga, ukuran));
         } else {
             System.out.println("Pilihan tidak valid!");
             return;
@@ -68,7 +68,7 @@ public class MenuManager {
         System.out.print("Masukkan kode barang yang akan diubah: ");
         String kode = scanner.nextLine();
         
-        Barang barang = cariBarang(kode);
+        cBarang barang = cariBarang(kode);
         if (barang == null) {
             System.out.println("Barang tidak ditemukan!");
             return;
@@ -105,7 +105,7 @@ public class MenuManager {
         System.out.print("Masukkan kode barang yang akan dihapus: ");
         String kode = scanner.nextLine();
         
-        Barang barang = cariBarang(kode);
+        cBarang barang = cariBarang(kode);
         if (barang == null) {
             System.out.println("Barang tidak ditemukan!");
             return;
@@ -135,7 +135,7 @@ public class MenuManager {
         System.out.println("--------------------------------------------------");
         
         for (int i = 0; i < daftarBarang.size(); i++) {
-            Barang barang = daftarBarang.get(i);
+            cBarang barang = daftarBarang.get(i);
             System.out.printf("%-6s %-20s %-10s Rp%,-10.0f%n", 
                 barang.getKode(), 
                 barang.getNama(), 
@@ -145,8 +145,8 @@ public class MenuManager {
         System.out.println("--------------------------------------------------");
     }
     
-    public Barang cariBarang(String kode) {
-        for (Barang barang : daftarBarang) {
+    public cBarang cariBarang(String kode) {
+        for (cBarang barang : daftarBarang) {
             if (barang.getKode().equalsIgnoreCase(kode)) {
                 return barang;
             }
@@ -154,8 +154,8 @@ public class MenuManager {
         return null;
     }
     
-    public Barang cariBarangByNama(String nama) {
-        for (Barang barang : daftarBarang) {
+    public cBarang cariBarangByNama(String nama) {
+        for (cBarang barang : daftarBarang) {
             if (barang.getNama().equalsIgnoreCase(nama)) {
                 return barang;
             }
@@ -163,7 +163,7 @@ public class MenuManager {
         return null;
     }
     
-    public ArrayList<Barang> getDaftarBarang() {
+    public ArrayList<cBarang> getDaftarBarang() {
         return daftarBarang;
     }
 }

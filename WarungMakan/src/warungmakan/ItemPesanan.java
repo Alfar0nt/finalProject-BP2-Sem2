@@ -1,15 +1,15 @@
 package warungmakan;
 
 public class ItemPesanan {
-    private Barang barang;
+    private cBarang barang;
     private int jumlah;
     
-    public ItemPesanan(Barang barang, int jumlah) {
+    public ItemPesanan(cBarang barang, int jumlah) {
         this.barang = barang;
         this.jumlah = jumlah;
     }
     
-    public Barang getBarang() { return barang; }
+    public cBarang getBarang() { return barang; }
     public int getJumlah() { return jumlah; }
     
     public double getSubtotal() {

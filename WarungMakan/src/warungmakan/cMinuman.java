@@ -1,9 +1,9 @@
 package warungmakan;
 
-public class Minuman extends Barang {
+public class cMinuman extends cBarang {
     private String ukuran;
     
-    public Minuman(String kode, String nama, double harga, String ukuran) {
+    public cMinuman(String kode, String nama, double harga, String ukuran) {
         super(kode, nama, harga);
         this.ukuran = ukuran;
     }

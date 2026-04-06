@@ -3,12 +3,12 @@ package warungmakan;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileManager {
+public class cFileManager {
     private static final String TRANSACTION_FILE = "transactions.txt";
     private static final String MENU_FILE = "menu.txt";
     private static final String PELANGGAN_FILE = "pelanggan.txt";
     
-    public static void saveTransaction(Pesanan pesanan) {
+    public static void saveTransaction(cPesanan pesanan) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(TRANSACTION_FILE, true))) {
             writer.write(pesanan.getNomorTransaksi() + "|" + 
                         pesanan.getNamaPembeli() + "|" + 
@@ -32,18 +32,18 @@ public class FileManager {
         }
     }
     
-    public static void saveMenu(ArrayList<Barang> daftarBarang) {
+    public static void saveMenu(ArrayList<cBarang> daftarBarang) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(MENU_FILE))) {
-            for (Barang barang : daftarBarang) {
+            for (cBarang barang : daftarBarang) {
                 String line = barang.getKode() + "|" + 
                             barang.getNama() + "|" + 
                             barang.getHarga() + "|" + 
                             barang.getKategori();
                 
-                if (barang instanceof Makanan) {
-                    line += "|" + ((Makanan) barang).getJenis();
-                } else if (barang instanceof Minuman) {
-                    line += "|" + ((Minuman) barang).getUkuran();
+                if (barang instanceof cMakanan) {
+                    line += "|" + ((cMakanan) barang).getJenis();
+                } else if (barang instanceof cMinuman) {
+                    line += "|" + ((cMinuman) barang).getUkuran();
                 }
                 
                 writer.write(line);
@@ -54,9 +54,9 @@ public class FileManager {
         }
     }
     
-    public static void savePelanggan(ArrayList<Pelanggan> daftarPelanggan) {
+    public static void savePelanggan(ArrayList<cPelanggan> daftarPelanggan) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PELANGGAN_FILE))) {
-            for (Pelanggan pelanggan : daftarPelanggan) {
+            for (cPelanggan pelanggan : daftarPelanggan) {
                 String line = pelanggan.getKodePelanggan() + "|" + 
                             pelanggan.getNama() + "|" + 
                             pelanggan.getAlamat() + "|" + 

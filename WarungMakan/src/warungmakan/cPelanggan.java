@@ -1,6 +1,6 @@
 package warungmakan;
 
-public class Pelanggan {
+public class cPelanggan {
     private String kodePelanggan;
     private String nama;
     private String alamat;
@@ -8,7 +8,7 @@ public class Pelanggan {
     private double totalBelanja;
     private boolean pelangganTetap;
     
-    public Pelanggan(String kodePelanggan, String nama, String alamat, String nomorMeja, boolean pelangganTetap) {
+    public cPelanggan(String kodePelanggan, String nama, String alamat, String nomorMeja, boolean pelangganTetap) {
         this.kodePelanggan = kodePelanggan;
         this.nama = nama;
         this.alamat = alamat;

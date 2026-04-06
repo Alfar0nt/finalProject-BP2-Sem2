@@ -2,14 +2,14 @@ package warungmakan;
 
 import java.util.ArrayList;
 
-public class Pesanan {
+public class cPesanan {
     private String nomorTransaksi;
     private String namaPembeli;
     private ArrayList<ItemPesanan> daftarItem;
     private double totalBiaya;
     private boolean selesai;
     
-    public Pesanan(String nomorTransaksi, String namaPembeli) {
+    public cPesanan(String nomorTransaksi, String namaPembeli) {
         this.nomorTransaksi = nomorTransaksi;
         this.namaPembeli = namaPembeli;
         this.daftarItem = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Pesanan {
         this.selesai = false;
     }
     
-    public void tambahItem(Barang barang, int jumlah) {
+    public void tambahItem(cBarang barang, int jumlah) {
         if (barang != null && jumlah > 0) {
             daftarItem.add(new ItemPesanan(barang, jumlah));
             hitungTotal();
@@ -48,7 +48,7 @@ public class Pesanan {
         
         for (int i = 0; i < daftarItem.size(); i++) {
             ItemPesanan item = daftarItem.get(i);
-            Barang barang = item.getBarang();
+            cBarang barang = item.getBarang();
             System.out.printf("%-3d %-20s %-8d Rp%,-8.0f Rp%,-10.0f%n", 
                 (i + 1), 
                 barang.getNama(), 
@@ -82,7 +82,7 @@ public class Pesanan {
         System.out.println("--------------------------------");
         
         for (ItemPesanan item : daftarItem) {
-            Barang barang = item.getBarang();
+            cBarang barang = item.getBarang();
             System.out.printf("%-20s %2d x Rp%,-8.0f Rp%,-10.0f%n", 
                 barang.getNama(), 
                 item.getJumlah(), 

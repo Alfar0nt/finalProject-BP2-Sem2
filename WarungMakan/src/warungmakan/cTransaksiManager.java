@@ -2,19 +2,19 @@ package warungmakan;
 
 import java.util.Scanner;
 
-public class TransaksiManager {
-    private MenuManager menuManager;
-    private PelangganManager pelangganManager;
-    private Pesanan pesananAktif;
+public class cTransaksiManager {
+    private cMenuManager menuManager;
+    private cPelangganManager pelangganManager;
+    private cPesanan pesananAktif;
     private Scanner scanner;
     private static int counterTransaksi = 1;
     
-    public TransaksiManager(MenuManager menuManager) {
+    public cTransaksiManager(cMenuManager menuManager) {
         this.menuManager = menuManager;
         this.scanner = new Scanner(System.in);
     }
     
-    public void setPelangganManager(PelangganManager pelangganManager) {
+    public void setPelangganManager(cPelangganManager pelangganManager) {
         this.pelangganManager = pelangganManager;
     }
     
@@ -27,7 +27,7 @@ public class TransaksiManager {
         scanner.nextLine();
         
         String namaPembeli;
-        Pelanggan pelanggan = null;
+        cPelanggan pelanggan = null;
         
         if (pilihan == 2 && pelangganManager != null) {
             pelangganManager.tampilkanDaftarPelanggan();
@@ -49,7 +49,7 @@ public class TransaksiManager {
         }
         
         String nomorTransaksi = generateNomorTransaksi();
-        pesananAktif = new Pesanan(nomorTransaksi, namaPembeli);
+        pesananAktif = new cPesanan(nomorTransaksi, namaPembeli);
         
         System.out.println("Transaksi dimulai dengan No: " + nomorTransaksi);
         
@@ -60,7 +60,7 @@ public class TransaksiManager {
         return String.format("TRX%03d", counterTransaksi++);
     }
     
-    private void menuTransaksi(Pelanggan pelanggan) {
+    private void menuTransaksi(cPelanggan pelanggan) {
         int pilihan = 0;
         
         do {
@@ -104,7 +104,7 @@ public class TransaksiManager {
         System.out.print("Masukkan kode barang: ");
         String kode = scanner.nextLine();
         
-        Barang barang = menuManager.cariBarang(kode);
+        cBarang barang = menuManager.cariBarang(kode);
         if (barang == null) {
             System.out.println("Barang tidak ditemukan!");
             return;
@@ -153,7 +153,7 @@ public class TransaksiManager {
         }
     }
     
-    private void prosesPembayaran(Pelanggan pelanggan) {
+    private void prosesPembayaran(cPelanggan pelanggan) {
         pesananAktif.tampilkanDaftarBelanja();
         
         if (pesananAktif.getDaftarItem().isEmpty()) {
@@ -191,5 +191,5 @@ public class TransaksiManager {
         System.out.println("\nTransaksi selesai. Terima kasih!");
     }
     
-    public Pesanan getPesananAktif() { return pesananAktif; }
+    public cPesanan getPesananAktif() { return pesananAktif; }
 }

@@ -1,11 +1,11 @@
 package warungmakan;
 
-public abstract class Barang {
+public abstract class cBarang {
     protected String nama;
     protected double harga;
     protected String kode;
     
-    public Barang(String kode, String nama, double harga) {
+    public cBarang(String kode, String nama, double harga) {
         this.kode = kode;
         this.nama = nama;
         this.harga = harga;
