@@ -1,115 +1,165 @@
-# Warung Makan Wong Solo - Aplikasi Manajemen UMKM
-Anggota Kelompok:
-Faril Akmal Aufa - 25082010039
-Moch. Ryan Saputra - 25082010028
-Dhiaurrahman Rabbani Harianto - 25082010042
+# 🍜 Warung Makan Wong Solo - Java Application
 
-## Deskripsi
-Aplikasi ini digunakan untuk membantu pihak pemilik UMKM Warung Makan Wong Solo dalam mencatat transaksi penjualan sehari-hari. Aplikasi mendukung transaksi dengan satu jenis barang atau banyak jenis barang sekaligus, dengan fitur pelanggan tetap dan diskon.
+Aplikasi kasir restoran berbasis terminal untuk Warung Makan Wong Solo dengan fitur lengkap manajemen menu, pelanggan, transaksi, dan laporan.
 
-## Fitur Utama
+## 📋 Fitur Utama
 
-### Spesifikasi Standar
-1. **Class Container & Pewarisan**: Implementasi class induk `Barang` dengan class anak `Makanan` dan `Minuman`
-2. **Sistem Login**: Login dan password (admin/wongsolo123) dengan batasan 3 kali percobaan
-3. **Master Barang**: Menu lengkap untuk mengelola data barang (Tambah, Ubah, Hapus, Lihat)
-4. **Transaksi Penjualan**: Nomor transaksi otomatis, shopping cart, dan proses pembayaran
-5. **Konfirmasi Tindakan**: Dialog konfirmasi untuk operasi ubah dan hapus
+### 🔐 **Sistem Login**
+- Username: `admin`
+- Password: `wongsolo123`
+- Proteksi dengan batas percobaan 3x
 
-### Spesifikasi Tambahan
-1. **Master Pembeli**: Manajemen data pelanggan dengan sistem diskon 10% untuk pelanggan tetap
-2. **Laporan Harian**: Rekap pemasukan harian dengan breakdown per menu
-3. **Laporan Pelanggan**: Ranking total belanja pelanggan dari tertinggi ke terendah
-4. **Penyimpanan Data**: Simpan transaksi dan data ke file otomatis
-5. **Antarmuka Terminal**: Interaksi user-friendly melalui console
+### 🍽 **Master Menu**
+- CRUD (Create, Read, Update, Delete) menu makanan & minuman
+- Kategori: Makanan (Paket/Ala Carte/Sayur) & Minuman (Small/Medium/Large)
+- Kode unik untuk setiap item
 
-## Struktur Project
+### 👥 **Master Pelanggan**
+- Manajemen data pelanggan (tetap & biasa)
+- Diskon otomatis 10% untuk pelanggan tetap
+- Tracking total belanja per pelanggan
+- Laporan spending pelanggan
+- **Tampilan sederhana tanpa kolom "jenis"**
+
+### 💳 **Transaksi Penjualan**
+- Shopping cart dengan multiple items
+- Opsi pelanggan terdaftar atau walk-in
+- Perhitungan otomatis diskon pelanggan tetap
+- Struk detail dengan format yang rapi
+
+### 📊 **Laporan**
+- Laporan pendapatan harian
+- Breakdown per item terlaris
+- Laporan spending pelanggan
+- Export data ke file teks
+
+## 🏗️ Struktur Project (Simplified)
 
 ```
-src/warungmakan/
-├── AppWarungMakan.java      # Main application class
-├── Login.java              # Authentication system
-├── Barang.java             # Parent class for items
-├── Makanan.java            # Child class for food items
-├── Minuman.java            # Child class for drink items
-├── MenuManager.java        # Menu/Barang management
-├── Pelanggan.java           # Customer class
-├── PelangganManager.java    # Customer management
-├── Pesanan.java             # Transaction/order class
-├── ItemPesanan.java         # Order item class
-├── TransaksiManager.java    # Transaction management
-├── LaporanManager.java      # Reporting system
-└── FileManager.java         # File storage system
+finalProjectSem2/
+├── WarungMakan/
+│   ├── src/
+│   │   └── warungmakan/           # 12 files (dari 19 files)
+│   │       ├── cAppWarungMakan.java     # Main Application
+│   │       ├── cBarang.java             # Base Class (Abstract)
+│   │       ├── cMakanan.java           # Food Class (+jenis)
+│   │       ├── cMinuman.java           # Drink Class  
+│   │       ├── cMenuManager.java        # Menu Management
+│   │       ├── cPelanggan.java          # Customer Class (simplified)
+│   │       ├── cPelangganManager.java   # Customer Management
+│   │       ├── cPesanan.java           # Transaction Class
+│   │       ├── ItemPesanan.java        # Order Item Class
+│   │       ├── cTransaksiManager.java  # Transaction Management
+│   │       ├── cLaporanManager.java    # Report Management
+│   │       ├── cLogin.java             # Authentication
+│   │       └── cFileManager.java       # File Storage
+│   └── README.md
+├── .gitignore
+├── cleanup_notes.md
+└── README.md
 ```
 
-## Cara Menjalankan
+## 📝 Deskripsi File & Class
 
-1. Compile project:
+### **Main Class**
+- **`cAppWarungMakan`** - Entry point aplikasi, mengkoordinasi semua manager
+
+### **Core Classes**
+- **`cBarang`** - Abstract base class untuk semua menu item
+  - Atribut: `kode`, `nama`, `harga`
+  - Method abstract: `getKategori()`, `tampilInfo()`
+
+- **`cMakanan`** - Class untuk item makanan (extends cBarang)
+  - Atribut tambahan: `jenis` (Paket/Ala Carte/Sayur) ✅ **Dipertahankan**
+
+- **`cMinuman`** - Class untuk item minuman (extends cBarang)
+  - Atribut tambahan: `ukuran` (Small/Medium/Large)
+
+### **Manager Classes**
+- **`cMenuManager`** - Mengelola CRUD menu makanan & minuman
+- **`cPelangganManager`** - Mengelola data pelanggan dan diskon
+  - ✅ **Tampilan disederhanakan** - tanpa kolom "jenis"
+- **`cTransaksiManager`** - Mengelola alur transaksi & shopping cart
+- **`cLaporanManager`** - Menggenerate laporan penjualan & analitik
+
+### **Transaction Classes**
+- **`cPesanan`** - Representasi satu transaksi/order
+  - Mengelola multiple items, perhitungan diskon, struk
+
+- **`ItemPesanan`** - Item dalam satu transaksi
+  - Hubungan barang + jumlah + subtotal
+
+### **Support Classes**
+- **`cPelanggan`** - Data pelanggan dengan status tetap/biasa
+  - ✅ **Simplified** - tidak ada atribut "jenis" berlebihan
+  - Method diskon otomatis 10% untuk pelanggan tetap
+
+- **`cLogin`** - Sistem autentikasi sederhana
+- **`cFileManager`** - Penyimpanan & backup data ke file teks
+
+## 🚀 Cara Menjalankan
+
+### **Compile**
 ```bash
-javac -cp src src/warungmakan/*.java
+cd WarungMakan
+javac -d . src/warungmakan/*.java
 ```
 
-2. Jalankan aplikasi:
+### **Run**
 ```bash
-java -cp src warungmakan.AppWarungMakan
+java warungmakan.cAppWarungMakan
 ```
 
-## Login Default
-- **Username**: admin
-- **Password**: wongsolo123
+## 📁 File Storage
 
-## Menu Utama
+Aplikasi otomatis menyimpan data ke file teks:
+- `transactions.txt` - Riwayat transaksi
+- `menu.txt` - Data menu items
+- `pelanggan.txt` - Data pelanggan
+- `backup_*.txt` - Backup otomatis saat exit
 
-1. **Master Barang** - Kelola menu makanan dan minuman
-2. **Transaksi Penjualan** - Proses pesanan dan pembayaran
-3. **Master Pelanggan** - Kelola data pelanggan
-4. **Laporan** - Lihat laporan penjualan dan pelanggan
-5. **Selesai** - Tutup aplikasi dengan backup data
+## 🔧 Teknologi
 
-## Fitur Diskon
-- Pelanggan tetap mendapatkan diskon 10% dari total belanja
-- Diskon otomatis diterapkan saat pembayaran
+- **Language:** Java (CLI Application)
+- **Design:** Object-Oriented Programming (OOP)
+- **Pattern:** Manager Pattern untuk setiap modul
+- **Storage:** File teks dengan format delimiter
+- **Architecture:** Layered Architecture
 
-## Penyimpanan Data
-- Transaksi otomatis disimpan ke `transactions.txt`
-- Data menu disimpan ke `menu.txt`
-- Data pelanggan disimpan ke `pelanggan.txt`
-- Backup otomatis dibuat saat aplikasi ditutup
+## 🎯 Kriteria Tambahan
 
-## Contoh Output Laporan
+✅ **Penamaan Class dengan Prefix 'c'**
+- Semua class menggunakan prefix `c` sesuai konvensi
+- Contoh: `cBarang`, `cMenuManager`, `cPelanggan`
 
-### Laporan Pemasukan Harian
-```
-=== LAPORAN PEMASUKAN HARIAN ===
-Warung Makan Wong Solo
-Tanggal: 2026-04-06
-==========================================
-Total Pendapatan : Rp480.000
-==========================================
-Rekap Pemasukan per Menu:
-1. Ayam Bakar Solo    : Rp230.000
-2. Gurami Bakar       : Rp150.000
-3. Es Teh Manis      : Rp85.000
-4. Kangkung           : Rp15.000
-==========================================
-```
+✅ **Struktur yang Sederhana & Ringkas**
+- ✅ **Hanya 12 file Java** (dari 19 files)
+- ✅ **Tidak ada file duplikat atau legacy**
+- ✅ **Tidak ada atribut "jenis" berlebihan di pelanggan**
+- ✅ **Nama file yang deskriptif dan jelas**
 
-### Laporan Pelanggan
-```
-=== LAPORAN TOTAL BELANJA PELANGGAN ===
---------------------------------------------------
-NO   NAMA PELANGGAN      TOTAL BELANJA
---------------------------------------------------
-1    Budi Santoso       Rp35.000
-2    Siti Nurhaliza     Rp15.000
---------------------------------------------------
-```
+✅ **Dokumentasi Lengkap**
+- README yang menjelaskan setiap class
+- Struktur project yang terorganisir
+- Cara penggunaan yang jelas
 
-## Teknologi
-- Java 8+
-- File I/O untuk penyimpanan data
-- Object-oriented programming dengan inheritance
-- ArrayList untuk data collection
+## 🗑️ File yang Dihapus (Legacy Files)
+- `cBuyer.java` - Class pelanggan lama
+- `cMenu.java`, `cMenu2.java`, `cMenu3.java` - Duplikat menu
+- `cTransaksi.java` - Class transaksi lama
+- `ccPelangganManager.java` - Duplikat manager
+- `WarungMakan.java` - Main class lama
 
-## Author
-Project ini dikembangkan untuk memenuhi tugas UMKM Management System.
+## 🌐 Repository
+
+**GitHub:** https://github.com/Alfar0nt/finalProject-BP2-Sem2
+
+---
+
+**Anggota Kelompok:**
+- Faril Akmal Aufa - 25082010039
+- Moch. Ryan Saputra - 25082010028  
+- Dhiaurrahman Rabbani Harianto - 25082010042
+
+**Version:** 2.0 (Refactored & Simplified)  
+**Status:** ✅ Production Ready
