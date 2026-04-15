@@ -69,7 +69,7 @@ public class cTransaksiManager {
             System.out.println("2. Hapus Item");
             System.out.println("3. Lihat Daftar Belanja");
             System.out.println("4. Bayar");
-            System.out.println("0. Selesai Transaksi");
+            System.out.println("0. Selesai");
             System.out.print("Pilih: ");
             pilihan = scanner.nextInt();
             scanner.nextLine();
