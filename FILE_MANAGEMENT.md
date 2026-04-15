@@ -1,15 +1,15 @@
-# 📁 FILE MANAGEMENT SYSTEM - Warung Makan Wong Solo
+# FILE MANAGEMENT SYSTEM - Warung Makan Wong Solo
 
-## 🗂️ Struktur File Storage
+## Struktur File Storage
 
 Aplikasi menggunakan sistem file teks (.txt) untuk menyimpan semua data secara persisten. Semua file disimpan di direktori root aplikasi.
 
-### 📄 Daftar File yang Digunakan
+## Daftar File yang Digunakan
 
-#### **1. `transactions.txt`**
-- **Fungsi:** Menyimpan riwayat transaksi penjualan
-- **Format:** `nomorTransaksi|namaPembeli|totalBiaya|isSelesai`
-- **Contoh:** 
+## 1. transactions.txt
+- Fungsi: Menyimpan riwayat transaksi penjualan
+- Format: nomorTransaksi|namaPembeli|totalBiaya|isSelesai
+- Contoh: 
   ```
   TRX001|Budi Santoso|45000.0|true
   ITEM|M001|Nasi Goreng|2|30000.0
@@ -21,10 +21,10 @@ Aplikasi menggunakan sistem file teks (.txt) untuk menyimpan semua data secara p
   END_TRANSACTION
   ```
 
-#### **2. `menu.txt`**
-- **Fungsi:** Menyimpan data master barang (makanan & minuman)
-- **Format:** `kode|nama|harga|kategori|jenis/ukuran`
-- **Contoh:**
+## 2. menu.txt
+- Fungsi: Menyimpan data master barang (makanan & minuman)
+- Format: kode|nama|harga|kategori|jenis/ukuran
+- Contoh:
   ```
   M001|Nasi Goreng|15000.0|Makanan|Paket
   M002|Mie Ayam|35000.0|Makanan|Ala Carte
@@ -34,35 +34,35 @@ Aplikasi menggunakan sistem file teks (.txt) untuk menyimpan semua data secara p
   D003|Jus Alpukat|15000.0|Minuman|Large
   ```
 
-#### **3. `pelanggan.txt`**
-- **Fungsi:** Menyimpan data master pelanggan
-- **Format:** `kode|nama|alamat|nomorMeja|pelangganTetap|totalBelanja`
-- **Contoh:**
+## 3. pelanggan.txt
+- Fungsi: Menyimpan data master pelanggan
+- Format: kode|nama|alamat|nomorMeja|pelangganTetap|totalBelanja
+- Contoh:
   ```
   P001|Budi Santoso|Surabaya|A1|true|125000.0
   P002|Siti Nurhaliza|Malang|B2|true|85000.0
   P003|Ahmad Fauzi|Sidoarjo|C3|false|45000.0
   ```
 
-#### **4. `backup_*.txt`**
-- **Fungsi:** Backup otomatis saat aplikasi ditutup
-- **Format:** Timestamp dalam nama file
-- **Contoh:** `backup_2026-04-06T17-38-35.312780036.txt`
+## 4. backup_*.txt
+- Fungsi: Backup otomatis saat aplikasi ditutup
+- Format: Timestamp dalam nama file
+- Contoh: backup_2026-04-06T17-38-35.312780036.txt
 
 ---
 
-## 🔧 Kode File Management
+## Kode File Management
 
-### **Class: `cFileManager.java`**
+### Class: cFileManager.java
 
-#### **📍 Lokasi File:**
+### Lokasi File:
 ```
 WarungMakan/src/warungmakan/cFileManager.java
 ```
 
-#### **🔑 Method Utama:**
+### Method Utama:
 
-##### **1. Save Transaction**
+### 1. Save Transaction
 ```java
 public static void saveTransaction(cPesanan pesanan) {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(TRANSACTION_FILE, true))) {
@@ -90,7 +90,7 @@ public static void saveTransaction(cPesanan pesanan) {
 }
 ```
 
-##### **2. Save Menu**
+### 2. Save Menu
 ```java
 public static void saveMenu(ArrayList<cBarang> daftarBarang) {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(MENU_FILE))) {
@@ -116,7 +116,7 @@ public static void saveMenu(ArrayList<cBarang> daftarBarang) {
 }
 ```
 
-##### **3. Save Pelanggan**
+### 3. Save Pelanggan
 ```java
 public static void savePelanggan(ArrayList<cPelanggan> daftarPelanggan) {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(PELANGGAN_FILE))) {
@@ -136,7 +136,7 @@ public static void savePelanggan(ArrayList<cPelanggan> daftarPelanggan) {
 }
 ```
 
-##### **4. Backup Data**
+### 4. Backup Data
 ```java
 public static void backupData() {
     String timestamp = java.time.LocalDateTime.now().toString().replace(":", "-");
@@ -164,11 +164,11 @@ public static void backupData() {
 
 ---
 
-## 🚀 Pemanggilan File Manager
+## Pemanggilan File Manager
 
-### **Di `cAppWarungMakan.java`:**
+### Di cAppWarungMakan.java:
 
-#### **1. Save Menu Setiap Perubahan**
+### 1. Save Menu Setiap Perubahan
 ```java
 case 1: // Tambah Barang
     menuManager.tambahBarang();
@@ -184,7 +184,7 @@ case 3: // Hapus Barang
     break;
 ```
 
-#### **2. Save Transaksi Setiap Pembayaran**
+### 2. Save Transaksi Setiap Pembayaran
 ```java
 // Setelah transaksi selesai
 laporanManager.tambahTransaksi(pesananSelesai);
@@ -200,7 +200,7 @@ if (pelanggan != null) {
 }
 ```
 
-#### **3. Save Pelanggan Setiap Perubahan**
+### 3. Save Pelanggan Setiap Perubahan
 ```java
 case 1: // Tambah Pelanggan
     pelangganManager.tambahPelanggan();
@@ -216,7 +216,7 @@ case 3: // Hapus Pelanggan
     break;
 ```
 
-#### **4. Backup Otomatis Saat Exit**
+### 4. Backup Otomatis Saat Exit
 ```java
 case 5: // Selesai
     System.out.println("\nMenampilkan laporan penutupan...");
@@ -232,9 +232,9 @@ case 5: // Selesai
 
 ---
 
-## 📋 Format File Lengkap
+## Format File Lengkap
 
-### **Struktur `transactions.txt`:**
+### Struktur transactions.txt:
 ```
 [HEADER_TRANSAKSI]
 [ITEM_1]
@@ -248,7 +248,7 @@ END_TRANSACTION
 END_TRANSACTION
 ```
 
-### **Struktur `menu.txt`:**
+### Struktur menu.txt:
 ```
 [KODE]|[NAMA]|[HARGA]|[KATEGORI]|[JENIS/UKURAN]
 [M001]|[Nasi Goreng]|[15000.0]|[Makanan]|[Paket]
@@ -256,7 +256,7 @@ END_TRANSACTION
 [D001]|[Es Teh]|[5000.0]|[Minuman]|[Small]
 ```
 
-### **Struktur `pelanggan.txt`:**
+### Struktur pelanggan.txt:
 ```
 [KODE]|[NAMA]|[ALAMAT]|[NOMOR_MEJA]|[PELANGGAN_TETAP]|[TOTAL_BELANJA]
 [P001]|[Budi]|[Surabaya]|[A1]|[true]|[125000.0]
@@ -264,28 +264,28 @@ END_TRANSACTION
 
 ---
 
-## 🔒 Keamanan Data
+## Keamanan Data
 
-1. **Auto Backup:** Setiap aplikasi ditutup, backup otomatis dibuat
-2. **Error Handling:** Try-catch untuk setiap operasi file
-3. **Append Mode:** Transaksi menggunakan append mode (true) untuk menambah data
-4. **Overwrite Mode:** Menu dan pelanggan menggunakan overwrite mode untuk update data
-
----
-
-## 🛠️ Teknologi yang Digunakan
-
-- **Java I/O:** `BufferedWriter`, `BufferedReader`
-- **File Handling:** `FileWriter`, `FileReader`
-- **Exception Handling:** `IOException`
-- **Date/Time:** `java.time.LocalDateTime`
-- **Data Structure:** `ArrayList<String>` untuk temporary storage
+1. Auto Backup: Setiap aplikasi ditutup, backup otomatis dibuat
+2. Error Handling: Try-catch untuk setiap operasi file
+3. Append Mode: Transaksi menggunakan append mode (true) untuk menambah data
+4. Overwrite Mode: Menu dan pelanggan menggunakan overwrite mode untuk update data
 
 ---
 
-## 📊 Contoh Data Real
+## Teknologi yang Digunakan
 
-### **File `transactions.txt` (setelah beberapa transaksi):**
+- Java I/O: BufferedWriter, BufferedReader
+- File Handling: FileWriter, FileReader
+- Exception Handling: IOException
+- Date/Time: java.time.LocalDateTime
+- Data Structure: ArrayList<String> untuk temporary storage
+
+---
+
+## Contoh Data Real
+
+### File transactions.txt (setelah beberapa transaksi):
 ```
 TRX001|Budi Santoso|45000.0|true
 ITEM|M001|Nasi Goreng|2|30000.0
@@ -298,7 +298,7 @@ ITEM|M005|Es Jeruk|4|20000.0
 END_TRANSACTION
 ```
 
-### **File `menu.txt` (complete data):**
+### File menu.txt (complete data):
 ```
 M001|Nasi Goreng|15000.0|Makanan|Paket
 M002|Mie Ayam|35000.0|Makanan|Ala Carte
@@ -309,7 +309,7 @@ D002|Es Jeruk|5000.0|Minuman|Medium
 D003|Jus Alpukat|15000.0|Minuman|Large
 ```
 
-### **File `pelanggan.txt` (dengan total belanja):**
+### File pelanggan.txt (dengan total belanja):
 ```
 P001|Budi Santoso|Surabaya|A1|true|125000.0
 P002|Siti Nurhaliza|Malang|B2|true|85000.0
@@ -318,14 +318,14 @@ P003|Ahmad Fauzi|Sidoarjo|C3|false|45000.0
 
 ---
 
-## ✅ Summary
+## Summary
 
-**Sistem file management ini sudah lengkap dan robust:**
-- ✅ **3 file utama** untuk data persisten
-- ✅ **Auto backup** untuk keamanan data
-- ✅ **Format terstruktur** dengan delimiter |
-- ✅ **Error handling** yang baik
-- ✅ **Real-time save** setiap perubahan data
-- ✅ **Timestamp** untuk backup dan tracking
+Sistem file management ini sudah lengkap dan robust:
+- 3 file utama untuk data persisten
+- Auto backup untuk keamanan data
+- Format terstruktur dengan delimiter |
+- Error handling yang baik
+- Real-time save setiap perubahan data
+- Timestamp untuk backup dan tracking
 
-**Total file yang dikelola:** 4 file (.txt) + backup files
+Total file yang dikelola: 4 file (.txt) + backup files
