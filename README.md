@@ -9,14 +9,14 @@ Aplikasi ini digunakan untuk membantu pihak pemilik UMKM Warung Makan Wong Solo 
 
 ## Fitur Utama
 
-### Spesifikasi Standar (75 Poin)
+### Spesifikasi Standar
 1. **Class Container & Pewarisan**: Implementasi class induk `Barang` dengan class anak `Makanan` dan `Minuman`
 2. **Sistem Login**: Login dan password (admin/wongsolo123) dengan batasan 3 kali percobaan
 3. **Master Barang**: Menu lengkap untuk mengelola data barang (Tambah, Ubah, Hapus, Lihat)
 4. **Transaksi Penjualan**: Nomor transaksi otomatis, shopping cart, dan proses pembayaran
 5. **Konfirmasi Tindakan**: Dialog konfirmasi untuk operasi ubah dan hapus
 
-### Spesifikasi Tambahan (25 Poin)
+### Spesifikasi Tambahan
 1. **Master Pembeli**: Manajemen data pelanggan dengan sistem diskon 10% untuk pelanggan tetap
 2. **Laporan Harian**: Rekap pemasukan harian dengan breakdown per menu
 3. **Laporan Pelanggan**: Ranking total belanja pelanggan dari tertinggi ke terendah

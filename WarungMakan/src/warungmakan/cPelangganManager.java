@@ -121,17 +121,16 @@ public class cPelangganManager {
         }
         
         System.out.println("----------------------------------------------------------------------------------------");
-        System.out.printf("%-6s %-20s %-15s %-8s %-15s %-15s%n", 
-            "KODE", "NAMA", "ALAMAT", "MEJA", "JENIS", "TOTAL BELANJA");
+        System.out.printf("%-6s %-20s %-15s %-8s %-15s%n", 
+            "KODE", "NAMA", "ALAMAT", "MEJA", "TOTAL BELANJA");
         System.out.println("----------------------------------------------------------------------------------------");
         
         for (cPelanggan pelanggan : daftarPelanggan) {
-            System.out.printf("%-6s %-20s %-15s %-8s %-15s Rp%,-15.0f%n", 
+            System.out.printf("%-6s %-20s %-15s %-8s Rp%,-15.0f%n", 
                 pelanggan.getKodePelanggan(),
                 pelanggan.getNama(),
                 pelanggan.getAlamat(),
                 pelanggan.getNomorMeja(),
-                pelanggan.isPelangganTetap() ? "Tetap" : "Biasa",
                 pelanggan.getTotalBelanja());
         }
         System.out.println("----------------------------------------------------------------------------------------");
