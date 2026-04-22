@@ -1,14 +1,14 @@
 package warungmakan;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class cMenuManager {
-    private ArrayList<cBarang> daftarBarang;
+    private LinkedList<cBarang> daftarBarang;
     private Scanner scanner;
     
     public cMenuManager() {
-        this.daftarBarang = new ArrayList<>();
+        this.daftarBarang = new LinkedList<>();
         this.scanner = new Scanner(System.in);
         initializeDefaultMenu();
     }
@@ -163,7 +163,7 @@ public class cMenuManager {
         return null;
     }
     
-    public ArrayList<cBarang> getDaftarBarang() {
+    public LinkedList<cBarang> getDaftarBarang() {
         return daftarBarang;
     }
 }

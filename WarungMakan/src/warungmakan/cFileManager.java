@@ -2,6 +2,7 @@ package warungmakan;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class cFileManager {
     private static final String TRANSACTION_FILE = "transactions.txt";
@@ -32,7 +33,7 @@ public class cFileManager {
         }
     }
     
-    public static void saveMenu(ArrayList<cBarang> daftarBarang) {
+    public static void saveMenu(LinkedList<cBarang> daftarBarang) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(MENU_FILE))) {
             for (cBarang barang : daftarBarang) {
                 String line = barang.getKode() + "|" + 
